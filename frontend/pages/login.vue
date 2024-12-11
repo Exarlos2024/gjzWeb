@@ -12,8 +12,8 @@
         <h2 class="form-title">登录</h2>
         <form @submit.prevent="handleSubmit">
           <div class="form-group">
-            <label for="email">邮箱</label>
-            <input type="email" id="email" v-model="form.email" required />
+            <label for="username">用户名</label>
+            <input type="username" id="username" v-model="form.username" required />
           </div>
           <div class="form-group">
             <label for="password">密码</label>
@@ -26,6 +26,7 @@
             </NuxtLink>
           </div>
         </form>
+        <div v-if="errorMessage" class="error">{{ errorMessage }}</div>
       </div>
     </div>
   </DefaultLayout>
@@ -33,15 +34,55 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 import DefaultLayout from '~/components/layout/DefaultLayout.vue'
 
 const form = ref({
-  email: '',
+  username: '',
   password: ''
 })
 
-const handleSubmit = () => {
-  console.log('提交的表单数据:', form.value)
+const errorMessage = ref('')
+const router = useRouter()
+
+const handleSubmit = async () => {
+  try {
+    console.log('Sending login request with:', {
+      username: form.value.username,
+      password: form.value.password
+    });
+
+    const response = await $fetch('http://localhost:8000/api/login/', {
+      method: 'POST',
+      body: {
+        username: String(form.value.username),
+        password: form.value.password
+      }
+    });
+
+    console.log('Login response:', response);
+    // 登录成功后，保存 token
+    if (response.token) {
+      localStorage.setItem('token', response.token)
+      localStorage.setItem('user_id', response.user_id)
+      localStorage.setItem('username', form.value.username)
+      router.push('/')
+    }
+  } catch (error) {
+    console.error('Login error:', error);
+    if (error.response) {
+      try {
+        const errorData = await error.response.json();
+        console.error('Error details:', errorData);
+        errorMessage.value = errorData.detail || errorData.error || '登录失败，请检查用户名和密码。';
+      } catch (e) {
+        console.error('Error parsing response:', e);
+        errorMessage.value = '服务器响应格式错误。';
+      }
+    } else {
+      errorMessage.value = '登录失败，请稍后重试。';
+    }
+  }
 }
 </script>
 

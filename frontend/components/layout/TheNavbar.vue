@@ -47,15 +47,73 @@
         />
       </div>
       <div class="right-nav">
-        <nuxt-link to="/login" class="sign-in-button">登录</nuxt-link>
-        <nuxt-link to="/reg" class="sign-up-button">注册</nuxt-link>
+        <template v-if="isLoggedIn">
+          <div class="user-info">
+            <nuxt-link to="/account" class="username-link">
+              <div class="user-avatar">
+                <span class="avatar-text">{{ username.charAt(0).toUpperCase() }}</span>
+              </div>
+              <span class="username">{{ username }}</span>
+            </nuxt-link>
+            <UButton
+              variant="solid"
+              class="logout-button"
+              label="退出"
+              @click="handleLogout"
+            />
+          </div>
+        </template>
+        <template v-else>
+          <nuxt-link to="/login" class="sign-in-button">登录</nuxt-link>
+          <nuxt-link to="/reg" class="sign-up-button">注册</nuxt-link>
+        </template>
       </div>
     </div>
   </nav>
 </template>
 
 <script setup>
-import { navMenus } from "~/constants/navigation";
+import { ref, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+import { navMenus } from "~/constants/navigation"
+
+const router = useRouter()
+const isLoggedIn = ref(false)
+const username = ref('')
+
+// 检查登录状态
+const checkLoginStatus = () => {
+  const token = localStorage.getItem('token')
+  const storedUsername = localStorage.getItem('username')
+  
+  if (token && storedUsername) {
+    isLoggedIn.value = true
+    username.value = storedUsername
+  } else {
+    isLoggedIn.value = false
+    username.value = ''
+  }
+}
+
+// 退出登录
+const handleLogout = () => {
+  // 清除本地存储的用户信息
+  localStorage.removeItem('token')
+  localStorage.removeItem('username')
+  localStorage.removeItem('user_id')
+  
+  // 更新状态
+  isLoggedIn.value = false
+  username.value = ''
+  
+  // 跳转到登录页
+  router.push('/login')
+}
+
+// 组件挂载时检查登录状态
+onMounted(() => {
+  checkLoginStatus()
+})
 </script>
 
 <style scoped>
@@ -82,9 +140,8 @@ import { navMenus } from "~/constants/navigation";
 
 .right-nav {
   display: flex;
-  gap: 1rem;
   align-items: center;
-  margin-left: auto;
+  gap: 1rem;
 }
 
 .sign-in-button,
@@ -189,6 +246,92 @@ import { navMenus } from "~/constants/navigation";
 @media (max-width: 768px) {
   .logo-hint {
     display: none; /* 在移动端隐藏提示文字 */
+  }
+}
+
+.username-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  padding: 0.5rem;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.username-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.avatar-text {
+  text-transform: uppercase;
+}
+
+.username {
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.logout-button {
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 6px 16px !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 6px !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: white !important;
+  transition: all 0.3s ease !important;
+  margin-left: 0.5rem !important;
+  white-space: nowrap !important;
+}
+
+.logout-button:hover {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .user-info {
+    gap: 0.5rem;
+  }
+
+  .username-link {
+    padding: 0.25rem;
+  }
+
+  .user-avatar {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+  }
+
+  .username {
+    font-size: 14px;
+  }
+
+  .logout-button {
+    padding: 4px 12px !important;
+    font-size: 13px !important;
   }
 }
 </style>

@@ -23,6 +23,14 @@
             <label for="password">密码</label>
             <input type="password" id="password" v-model="form.password" required />
           </div>
+          <div class="form-group">
+            <label for="organization">组织名称</label>
+            <input type="text" id="organization" v-model="form.organization" />
+          </div>
+          <div class="form-group">
+            <label for="telephone">电话号码</label>
+            <input type="text" id="telephone" v-model="form.telephone" />
+          </div>
           <button type="submit" class="submit-button">注册</button>
           <div class="form-footer">
             <NuxtLink to="/login" class="login-link">
@@ -30,23 +38,57 @@
             </NuxtLink>
           </div>
         </form>
+        <div v-if="errorMessage" class="error">{{ errorMessage }}</div>
       </div>
     </div>
   </DefaultLayout>
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import DefaultLayout from '~/components/layout/DefaultLayout.vue'
+import { ref } from 'vue' // 从 Vue 中导入 ref，用于创建响应式数据
+import { useRouter } from 'vue-router' // 从 vue-router 中导入 useRouter，用于路由导航
+import DefaultLayout from '~/components/layout/DefaultLayout.vue' // 导入默认布局组件
 
+// 创建一个响应式对象 form，用于存储表单数据
 const form = ref({
-  username: '',
-  email: '',
-  password: ''
+  username: '', // 用户名
+  email: '', // 邮箱
+  password: '', // 密码
+  organization: '', // 组织名称
+  telephone: '' // 电话号码
 })
 
-const handleSubmit = () => {
-  console.log('提交的表单数据:', form.value)
+// 创建一个响应式变量 errorMessage，用于存储错误信息
+const errorMessage = ref('')
+// 获取路由实例，用于页面导航
+const router = useRouter()
+
+// 定义一个异步函数 handleSubmit，用于处理表单提交
+const handleSubmit = async () => {
+  try {
+    const response = await fetch('http://localhost:8000/api/register/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json', // 请求头，指定内容类型为 JSON
+      },
+      body: JSON.stringify(form.value), // 将表单数据转换为 JSON 字符串并作为请求体发送
+    });
+
+    // 检查响应是否成功
+    if (response.ok) {
+      const data = await response.json(); // 解析响应数据
+      console.log('注册成功:', data); // 在控制台输出成功信息
+      // 注册成功后，重定向到登录页面
+      router.push('/login');
+    } else {
+      const errorData = await response.json(); // 解析错误响应数据
+      console.error('注册失败:', errorData); // 在控制台输出错误信息
+      errorMessage.value = '注册失败，请检查输入信息。'; // 更新错误信息
+    }
+  } catch (error) {
+    console.error('请求失败:', error); // 在控制台输出请求失败信息
+    errorMessage.value = '网络错误，请稍后重试。'; // 更新错误信息
+  }
 }
 </script>
 
