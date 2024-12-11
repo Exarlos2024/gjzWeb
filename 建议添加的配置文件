@@ -1,0 +1,6 @@
+- backend/.env.example        # Django 环境变量示例
+- backend/pytest.ini         # Python 测试配置
+- backend/.flake8           # Python 代码风格检查配置
+- frontend/.env.example      # Nuxt 环境变量示例
+- .editorconfig             # 编辑器配置
+- .pre-commit-config.yaml   # Git 提交前检查配置 
