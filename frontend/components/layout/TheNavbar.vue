@@ -37,19 +37,19 @@
           variant="solid"
           class="nav-button"
           label=" 关于"
-          @click="$router.push('/about')"
+          @click="$router.push('/otherfuncs/about')"
         />
         <UButton
           variant="solid"
           class="nav-button"
           label="常用链接"
-          @click="$router.push('/links')"
+          @click="$router.push('/otherfuncs/links')"
         />
       </div>
       <div class="right-nav">
         <template v-if="isLoggedIn">
           <div class="user-info">
-            <nuxt-link to="/account" class="username-link">
+            <nuxt-link to="/user/settings" class="username-link">
               <div class="user-avatar">
                 <span class="avatar-text">{{ username.charAt(0).toUpperCase() }}</span>
               </div>

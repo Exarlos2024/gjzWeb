@@ -13,20 +13,24 @@ export const navMenus = [
         {
           label: "Excel查重工具",
           icon: "i-heroicons-plus",
+          to: "/excel/duplicate"
         },
         {
           label: "Excel比对工具",
           icon: "i-heroicons-folder-open",
+          to: "/excel/compare"
         },
       ],
       [
         {
           label: "导入数据",
           icon: "i-heroicons-arrow-down-tray",
+          to: "/excel/import"
         },
         {
           label: "导出数据",
           icon: "i-heroicons-arrow-up-tray",
+          to: "/excel/export"
         },
       ],
     ],
@@ -38,20 +42,53 @@ export const navMenus = [
         {
           label: "公文格式化工具",
           icon: "i-heroicons-document-plus",
+          to: "/word/format"
         },
         {
           label: "打开公文",
           icon: "i-heroicons-folder-open",
+          to: "/word/open"
         },
       ],
       [
         {
           label: "公文格式模板下载",
           icon: "i-heroicons-document-duplicate",
+          to: "/word/templates"
         },
         {
           label: "导出PDF",
           icon: "i-heroicons-arrow-up-tray",
+          to: "/word/export-pdf"
+        },
+      ],
+    ],
+  },
+  {
+    label: "PDF转换工具",
+    items: [
+      [
+        {
+          label: "PDF转Word",
+          icon: "i-heroicons-document-arrow-up-20-solid",
+          to: "/pdf/to-word"
+        },
+        {
+          label: "PDF转Excel",
+          icon: "i-heroicons-table-cells-20-solid",
+          to: "/pdf/to-excel"
+        },
+      ],
+      [
+        {
+          label: "批量转换",
+          icon: "i-heroicons-document-duplicate-20-solid",
+          to: "/pdf/batch"
+        },
+        {
+          label: "历史记录",
+          icon: "i-heroicons-clock-20-solid",
+          to: "/pdf/history"
         },
       ],
     ],
@@ -65,38 +102,19 @@ export const navMenus = [
           avatar: {
             src: "/images/Exarlos2.png",
           },
+          to: "/medical/profile"
         },
       ],
       [
         {
           label: "投诉管理平台",
           icon: "i-heroicons-pencil-square-20-solid",
-          shortcuts: ["E"],
+          to: "/medical/complaints"
         },
         {
-          label: "Duplicate",
+          label: "归档管理",
           icon: "i-heroicons-document-duplicate-20-solid",
-          shortcuts: ["D"],
-        },
-      ],
-      [
-        {
-          label: "Archive",
-          icon: "i-heroicons-archive-box-20-solid",
-        },
-        {
-          label: "Move",
-          icon: "i-heroicons-arrow-right-circle-20-solid",
-        },
-      ],
-      [
-        {
-          label: "Delete",
-          icon: "i-heroicons-trash-20-solid",
-        },
-        {
-          label: "Restore",
-          icon: "i-heroicons-arrow-left-circle-20-solid",
+          to: "/medical/archive"
         },
       ],
     ],

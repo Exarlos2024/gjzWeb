@@ -39,21 +39,21 @@ const slides = [
     title: "Excel工具",
     description: "关于Excel的工具",
     buttonText: "了解更多",
-    action: "/services",
+    action: "/excel",
     image: "/images/Excel.png"
   },
   {
     title: "Word公文工具",
     description: "提供方便的Word公文生成",
     buttonText: "立即预约",
-    action: "/appointment",
+    action: "/word",
     image: "/images/word.png"
   },
   {
     title: "信息化建设",
     description: "用技术解决问题",
     buttonText: "查看详情",
-    action: "/health",
+    action: "/medical",
     image: "/images/ppt.png"
   }
 ]

@@ -12,9 +12,9 @@
       <div class="footer-links">
         <a href="https://github.com/" target="_blank">GitHub</a>
         <span class="divider">|</span>
-        <a href="/about">关于我们</a>
+        <a href="/otherfuncs/about">关于我们</a>
         <span class="divider">|</span>
-        <a href="/contact">联系我们</a>
+        <a href="/otherfuncs/contact">联系我们</a>
         <span class="divider">|</span>
         <a href="#" @click.prevent="showQRCode = true" class="wechat-link">
           <i class="fab fa-weixin"></i>
