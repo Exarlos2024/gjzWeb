@@ -38,7 +38,7 @@ import DefaultLayout from "~/components/layout/DefaultLayout.vue"
   max-width: 1200px;
   margin: 2rem auto;
   padding: 2rem;
-  background-color: #fff;
+  background: linear-gradient(135deg, #e0f7fa, #80deea);
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }

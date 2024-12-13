@@ -34,17 +34,27 @@
           />
         </UDropdown>
         <UButton
-          variant="solid"
-          class="nav-button"
-          label=" 关于"
-          @click="$router.push('/otherfuncs/about')"
-        />
-        <UButton
+          icon="i-ic:round-collections-bookmark"
           variant="solid"
           class="nav-button"
           label="常用链接"
           @click="$router.push('/otherfuncs/links')"
         />
+        <UButton
+          icon="i-material-symbols:contact-phone-sharp"
+          variant="solid"
+          class="nav-button"
+          label="通讯录"
+          @click="$router.push('/otherfuncs/addressbook')"
+        />
+        <UButton
+          icon="i-ic:round-domain-add"
+          variant="solid"
+          class="nav-button"
+          label=" 关于"
+          @click="$router.push('/otherfuncs/about')"
+        />
+
       </div>
       <div class="right-nav">
         <template v-if="isLoggedIn">
@@ -56,6 +66,7 @@
               <span class="username">{{ username }}</span>
             </nuxt-link>
             <UButton
+              icon="i-ic:round-exit-to-app"
               variant="solid"
               class="logout-button"
               label="退出"

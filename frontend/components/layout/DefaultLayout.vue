@@ -26,6 +26,11 @@ import TheFooter from "./TheFooter.vue";
   position: relative;
   display: flex;
   flex-direction: column;
+  /* background: linear-gradient(135deg, #4e54c8, #8f94fb) !important; */
+  /* background: linear-gradient(135deg, #e0f7fa, #80deea, #26c6da); */
+  background: linear-gradient(135deg, #a1c4fd, #c2e9fb);  
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 main {
@@ -33,4 +38,5 @@ main {
   position: relative;
   padding: 0;
 }
+
 </style>

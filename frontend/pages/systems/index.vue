@@ -2,42 +2,58 @@
   <DefaultLayout>
     <div class="word-tools-page">
       <div class="page-header">
-        <h1>Word 公文工具</h1>
-        <p class="description">提供多种 Word 公文处理工具</p>
+        <h1>业务系统</h1>
+        <p class="description">提供投诉管理系统等工具</p>
       </div>
 
       <div class="tools-grid">
-        <nuxt-link to="/word/format" class="tool-card">
+        <nuxt-link to="/systems/complaint-management" class="tool-card">
           <div class="tool-icon">
-            <div class="i-heroicons-document-plus text-3xl" />
+            <div class="i-heroicons-clipboard-list text-3xl" />
           </div>
-          <h3>公文格式化工具</h3>
-          <p>快速规范公文格式</p>
+          <h3>投诉管理系统</h3>
+          <p>访问投诉管理系统，快速处理投诉信息</p>
+        </nuxt-link>
+       <nuxt-link to="/systems/health-record-management" class="tool-card">
+          <div class="tool-icon">
+            <div class="i-heroicons-clipboard-list text-3xl" />
+          </div>
+          <h3>健康档案管理系统</h3>
+          <p>访问健康档案管理系统，快速管理健康信息</p>
         </nuxt-link>
 
-        <nuxt-link to="/word/open" class="tool-card">
+        <!-- <nuxt-link to="/otherfuncs/links" class="tool-card">
           <div class="tool-icon">
-            <div class="i-heroicons-folder-open text-3xl" />
+            
+            <div class="i-heroicons-link text-3xl" />
           </div>
-          <h3>打开公文</h3>
-          <p>查看和编辑公文文件</p>
+          <h3>常用链接</h3>
+          <p>访问常用的外部链接</p>
+        </nuxt-link> -->
+
+        <!-- <nuxt-link to="/otherfuncs/addressbook" class="tool-card">
+          <div class="tool-icon">
+            <div class="i-heroicons-book-open text-3xl" />
+          </div>
+          <h3>通讯录</h3>
+          <p>查看和管理联系人信息</p>
         </nuxt-link>
 
-        <nuxt-link to="/word/templates" class="tool-card">
+        <nuxt-link to="/otherfuncs/about" class="tool-card">
           <div class="tool-icon">
-            <div class="i-heroicons-document-duplicate text-3xl" />
+            <div class="i-heroicons-information-circle text-3xl" />
           </div>
-          <h3>公文格式模板下载</h3>
-          <p>下载标准公文模板</p>
+          <h3>关于我们</h3>
+          <p>了解我们的背景和使命</p>
         </nuxt-link>
 
-        <nuxt-link to="/word/export-pdf" class="tool-card">
+        <nuxt-link to="/otherfuncs/contact" class="tool-card">
           <div class="tool-icon">
-            <div class="i-heroicons-arrow-up-tray text-3xl" />
+            <div class="i-heroicons-phone text-3xl" />
           </div>
-          <h3>导出PDF</h3>
-          <p>将公文转换为PDF格式</p>
-        </nuxt-link>
+          <h3>联系我们</h3>
+          <p>获取我们的联系信息</p>
+        </nuxt-link> -->
       </div>
     </div>
   </DefaultLayout>

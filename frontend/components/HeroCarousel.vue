@@ -50,11 +50,18 @@ const slides = [
     image: "/images/word.png"
   },
   {
-    title: "信息化建设",
+    title: "业务系统",
     description: "用技术解决问题",
     buttonText: "查看详情",
-    action: "/medical",
-    image: "/images/ppt.png"
+    action: "/systems",
+    image: "/images/ppt2.png"
+  },
+  {
+    title: "其他",
+    description: "通讯录等",
+    buttonText: "查看详情",
+    action: "/otherfuncs",
+    image: "/images/contact.jpg"
   }
 ]
 
