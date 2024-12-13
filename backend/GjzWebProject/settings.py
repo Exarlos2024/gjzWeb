@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -38,6 +39,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'corsheaders',
+    'ExcelDuplicate',
+    # 'ExcelDuplicate.apps.ExcelduplicateConfig',
+    # 'apps.excel',
 ]
 
 MIDDLEWARE = [
@@ -152,6 +156,11 @@ LOGGING = {
             'level': 'ERROR',
             'propagate': True,
         },
+        'ExcelDuplicate': {  # 你的应用的记录器
+            'handlers': ['console', 'file'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
     },
 }
 
@@ -166,3 +175,10 @@ REST_FRAMEWORK = {
 }
 
 AUTH_USER_MODEL = 'UserProfit.CustomUser'
+
+# 文件上传配置
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# 允许上传的最大文件大小（这里设置为10MB）
+DATA_UPLOAD_MAX_MEMORY_SIZE = 50 * 1024 * 1024

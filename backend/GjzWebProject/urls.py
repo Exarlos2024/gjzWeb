@@ -19,5 +19,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('UserProfit.urls')),  # 假设你的应用名为UserProfit
+    path('api/excel/', include('ExcelDuplicate.urls')),  # 注意这里
+    path('api/', include('UserProfit.urls')),
 ]

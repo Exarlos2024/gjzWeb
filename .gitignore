@@ -180,3 +180,14 @@ node_modules
 .DS_Store
 .fleet
 .idea
+
+# 排除 Excel 文件
+*.xls
+*.xlsx
+
+# 排除 Word 文件
+*.doc
+*.docx
+
+# 排除 PDF 文件
+*.pdf
