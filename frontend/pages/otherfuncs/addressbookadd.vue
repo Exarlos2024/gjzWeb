@@ -54,6 +54,7 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import DefaultLayout from "~/components/layout/DefaultLayout.vue"; // 引入 DefaultLayout
+import Contact from '~/utils/Contact.js'; // 引入 Contact 类
 
 const name = ref('')
 const position = ref('')
@@ -64,19 +65,14 @@ const level = ref('') // 级别字段，保存为数字
 const router = useRouter()
 
 const addContact = async () => {
+  const contact = new Contact(name.value, position.value, office.value, office_phone.value, handphone.value, level.value);
+
   const response = await fetch('/api/contacts', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({
-      name: name.value,
-      position: position.value,
-      office: office.value,
-      office_phone: office_phone.value,
-      handphone: handphone.value,
-      level: Number(level.value) // 将级别转换为数字
-    })
+    body: JSON.stringify(contact.toJSON()) // 使用 toJSON 方法
   })
 
   if (response.ok) {

@@ -21,4 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/excel/', include('ExcelDuplicate.urls')),  # 注意这里
     path('api/', include('UserProfit.urls')),
+    path('api/', include('Directory.urls')),
 ]

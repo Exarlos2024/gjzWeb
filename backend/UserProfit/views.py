@@ -11,6 +11,8 @@ from rest_framework.permissions import AllowAny
 from django.contrib.auth import authenticate
 import logging
 import traceback
+from rest_framework.views import APIView
+from rest_framework.permissions import IsAuthenticated
 
 logger = logging.getLogger(__name__)
 
@@ -80,3 +82,18 @@ class CustomAuthToken(ObtainAuthToken):
                 "error": "Server error",
                 "detail": str(e)
             }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+class UserPermissionsView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        print(f"User: {request.user.username} is requesting permissions.")  # 打印用户信息
+        permissions = {
+            'can_add_contact': request.user.has_perm('Directory.add_contact'),  # 确保使用正确的权限名称
+            'can_view_contact': request.user.has_perm('Directory.view_contact'),
+            'can_change_contact': request.user.has_perm('Directory.change_contact'),
+            'can_delete_contact': request.user.has_perm('Directory.delete_contact'),
+            # 添加其他权限检查
+        }
+        print(f"Permissions: {permissions}")  # 打印权限信息
+        return Response(permissions)

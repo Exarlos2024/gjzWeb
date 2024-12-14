@@ -36,10 +36,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'UserProfit.apps.UserprofitConfig',
+    # 'UserProfit',
     'rest_framework',
     'rest_framework.authtoken',
     'corsheaders',
     'ExcelDuplicate',
+    'Directory',
     # 'ExcelDuplicate.apps.ExcelduplicateConfig',
     # 'apps.excel',
 ]
