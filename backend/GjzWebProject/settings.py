@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'ExcelDuplicate',
     'Directory',
+    'ComplaintManagement',
     # 'ExcelDuplicate.apps.ExcelduplicateConfig',
     # 'apps.excel',
 ]

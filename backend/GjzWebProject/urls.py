@@ -22,4 +22,5 @@ urlpatterns = [
     path('api/excel/', include('ExcelDuplicate.urls')),  # 注意这里
     path('api/', include('UserProfit.urls')),
     path('api/', include('Directory.urls')),
+    path('api/', include('ComplaintManagement.urls')),
 ]

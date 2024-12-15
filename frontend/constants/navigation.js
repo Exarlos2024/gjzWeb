@@ -109,7 +109,7 @@ export const navMenus = [
         {
           label: "投诉管理平台",
           icon: "i-heroicons-pencil-square-20-solid",
-          to: "/medical/complaints"
+          to: "/systems/complaint-management"
         },
         {
           label: "归档管理",
